@@ -99,7 +99,7 @@ class InstallHooks extends Command
     {
         $artisan = base_path('artisan');
 
-        return "#!/bin/sh\n/usr/bin/env php " . $artisan . ' ' . $signature . "\n";
+        return "#!/bin/sh\n/usr/bin/env php " . addslashes($artisan) . ' ' . $signature . "\n";
     }
 
     /**
