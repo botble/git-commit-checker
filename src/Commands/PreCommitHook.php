@@ -223,7 +223,7 @@ class PreCommitHook extends Command
     {
         $message = 'Commit aborted: you have errors in your code!';
 
-        if ($this->exec('which cowsay')) {
+        if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN' && $this->exec('which cowsay')) {
             $this->exec('cowsay -f unipony-smaller "{$message}"', $output);
             $message = implode("\n", $output);
         }
