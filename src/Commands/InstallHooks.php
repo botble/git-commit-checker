@@ -99,6 +99,11 @@ class InstallHooks extends Command
     {
         $artisan = base_path('artisan');
 
+        // replace project path in windows.               
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {            
+            $artisan = str_replace('\\','\\\\',$artisan);
+        }
+
         return "#!/bin/sh\n/usr/bin/env php " . addslashes($artisan) . ' ' . $signature . "\n";
     }
 
