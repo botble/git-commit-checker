@@ -2,10 +2,10 @@
 
 namespace Botble\GitCommitChecker\Commands;
 
-use ReflectionClass;
-use RuntimeException;
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
+use ReflectionClass;
+use RuntimeException;
 
 class InstallHooks extends Command
 {
