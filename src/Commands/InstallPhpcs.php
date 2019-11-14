@@ -45,6 +45,7 @@ class InstallPhpcs extends Command
         // Checkout existence of sample phpcs.xml.
         if (!file_exists($phpcs)) {
             $this->error('The sample phpcs.xml does not exist! Try to reinstall botble/git-commit-checker package!');
+
             return false;
         }
 
@@ -53,7 +54,7 @@ class InstallPhpcs extends Command
             if (!$this->confirmToProceed('phpcs.xml already exists, do you want to overwrite it?', true)) {
                 return false;
             }
-            
+
             //remove old phpcs.xml file form root
             unlink($rootphpcs);
         }

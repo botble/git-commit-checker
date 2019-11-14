@@ -2,11 +2,11 @@
 
 namespace Botble\GitCommitChecker\Commands;
 
-use RuntimeException;
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use JakubOnderka\PhpParallelLint\ConsoleWriter;
 use JakubOnderka\PhpParallelLint\TextOutputColored;
+use RuntimeException;
 
 class PreCommitHook extends Command
 {
