@@ -3,7 +3,7 @@
 namespace Botble\GitCommitChecker\Providers;
 
 use Botble\GitCommitChecker\Commands\InstallHooks;
-use Botble\GitCommitChecker\Commands\InstallPhpcs;
+use Botble\GitCommitChecker\Commands\InstallPhpCs;
 use Botble\GitCommitChecker\Commands\PreCommitHook;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +15,7 @@ class CommandServiceProvider extends ServiceProvider
             $this->commands([
                 InstallHooks::class,
                 PreCommitHook::class,
-                InstallPhpcs::class,
+                InstallPhpCs::class,
             ]);
         }
     }

@@ -5,7 +5,7 @@ namespace Botble\GitCommitChecker\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 
-class InstallPhpcs extends Command
+class InstallPhpCs extends Command
 {
     use ConfirmableTrait;
 
@@ -30,27 +30,27 @@ class InstallPhpcs extends Command
      */
     public function handle()
     {
-        $phpcs = __DIR__ . '/../../phpcs.xml';
-        $rootphpcs = base_path('phpcs.xml');
+        $phpCs = __DIR__ . '/../../phpcs.xml';
+        $rootPhpCs = base_path('phpcs.xml');
 
         // Checkout existence of sample phpcs.xml.
-        if (!file_exists($phpcs)) {
+        if (!file_exists($phpCs)) {
             $this->error('The sample phpcs.xml does not exist! Try to reinstall botble/git-commit-checker package!');
 
             return 1;
         }
 
         // Checkout existence phpcs.xml in root path of project.
-        if (file_exists($rootphpcs)) {
+        if (file_exists($rootPhpCs)) {
             if (!$this->confirmToProceed('phpcs.xml already exists, do you want to overwrite it?', true)) {
                 return 1;
             }
 
             // Remove old phpcs.xml file form root
-            unlink($rootphpcs);
+            unlink($rootPhpCs);
         }
 
-        $this->writePHPCS($phpcs, $rootphpcs)
+        $this->writePHPCS($phpCs, $rootPhpCs)
             ? $this->info('Phpcs.xml successfully created!')
             : $this->error('Unable to create phpcs.xml');
 
@@ -64,10 +64,10 @@ class InstallPhpcs extends Command
      * @param string $rootphpcs
      * @return bool
      */
-    protected function writePHPCS(string $phpcs, string $rootphpcs): bool
+    protected function writePHPCS(string $phpCs, string $rootPhpCs): bool
     {
         // phpcs.xml file to root
-        if (!copy($phpcs, $rootphpcs)) {
+        if (!copy($phpCs, $rootPhpCs)) {
             return false;
         }
 
