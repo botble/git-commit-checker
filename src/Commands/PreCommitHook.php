@@ -27,7 +27,7 @@ class PreCommitHook extends Command
     /**
      * Execute the console command.
      *
-     * @return bool
+     * @return int
      * @throws \JakubOnderka\PhpConsoleColor\InvalidStyleException
      */
     public function handle()
@@ -61,7 +61,7 @@ class PreCommitHook extends Command
 
         $output->writeLine('Your code is perfect, no syntax error found!', TextOutputColored::TYPE_OK);
 
-        return true;
+        return 0;
     }
 
     /**
