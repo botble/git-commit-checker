@@ -8,6 +8,7 @@ use Illuminate\Console\ConfirmableTrait;
 class InstallPhpcs extends Command
 {
     use ConfirmableTrait;
+
     /**
      * The name and signature of the console command.
      *
@@ -23,45 +24,37 @@ class InstallPhpcs extends Command
     protected $description = 'Create default phpcs.xml';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-        $phpcs = base_path('vendor/botble/git-commit-checker/phpcs.xml');
+        $phpcs = __DIR__ . '/../../phpcs.xml';
         $rootphpcs = base_path('phpcs.xml');
 
         // Checkout existence of sample phpcs.xml.
         if (!file_exists($phpcs)) {
             $this->error('The sample phpcs.xml does not exist! Try to reinstall botble/git-commit-checker package!');
 
-            return false;
+            return 1;
         }
 
         // Checkout existence phpcs.xml in root path of project.
         if (file_exists($rootphpcs)) {
             if (!$this->confirmToProceed('phpcs.xml already exists, do you want to overwrite it?', true)) {
-                return false;
+                return 1;
             }
 
-            //remove old phpcs.xml file form root
+            // Remove old phpcs.xml file form root
             unlink($rootphpcs);
         }
 
         $this->writePHPCS($phpcs, $rootphpcs)
             ? $this->info('Phpcs.xml successfully created!')
             : $this->error('Unable to create phpcs.xml');
+
+        return 0;
     }
 
     /**
@@ -76,8 +69,8 @@ class InstallPhpcs extends Command
         // phpcs.xml file to root
         if (!copy($phpcs, $rootphpcs)) {
             return false;
-        } else {
-            return true;
         }
+
+        return true;
     }
 }

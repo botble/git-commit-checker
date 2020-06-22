@@ -34,7 +34,7 @@ class InstallHooks extends Command
     public function handle()
     {
         if (!app()->isLocal()) {
-            return false;
+            return 1;
         }
 
         foreach (config('git-commit-checker.hooks') as $hook => $command) {
@@ -43,7 +43,7 @@ class InstallHooks extends Command
                 : $this->error('Unable to install ' . $hook . ' hook');
         }
 
-        return true;
+        return 0;
     }
 
     /**
