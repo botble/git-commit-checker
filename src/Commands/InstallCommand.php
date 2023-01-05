@@ -100,7 +100,7 @@ class InstallCommand extends Command
         if (! $this->laravel['files']->put(
             $path,
             json_encode(
-                $standard !== 'recommended'
+                $preset !== 'recommended'
                     ? ['preset' => $preset]
                     : $this->laravel['config']->get('git-commit-checker.pint.recommended_preset'),
                 JSON_PRETTY_PRINT
