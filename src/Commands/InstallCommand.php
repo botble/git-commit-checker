@@ -86,15 +86,15 @@ class InstallCommand extends Command
 
     protected function generatePintConfiguration(string $path): void
     {
-        $presets = [
-            'laravel' => 'Laravel',
-            'symfony' => 'Symfony',
-            'psr12' => 'PSR-12',
-            'psr2' => 'PSR-2',
-            'recommended' => 'Recommended (PSR-12 Extended)',
-        ];
+        $presets = $this->laravel['config']->get('git-commit-checker.pint.presets', []);
+
+        if (empty($presets)) {
+            $this->components->error('Do not found a list of supported presets');
+            abort(1);
+        }
 
         $standard = $this->components->choice('Which standard you want to use?', array_values($presets), 0);
+
         $preset = array_flip($presets)[$standard];
 
         if (! $this->laravel['files']->put(
@@ -102,7 +102,7 @@ class InstallCommand extends Command
             json_encode(
                 $standard !== 'recommended'
                     ? ['preset' => $preset]
-                    : $this->laravel['config']->get('git-commit-checker.recommended_preset'),
+                    : $this->laravel['config']->get('git-commit-checker.pint.recommended_preset'),
                 JSON_PRETTY_PRINT
             )
         )) {
