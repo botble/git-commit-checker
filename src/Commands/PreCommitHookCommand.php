@@ -31,7 +31,6 @@ class PreCommitHookCommand extends Command
         $command = [
             $this->laravel->basePath('vendor/bin/pint'),
             '--test',
-            '-v',
         ];
 
         $command = array_merge($command, $uncommittedFiles);
@@ -43,6 +42,7 @@ class PreCommitHookCommand extends Command
         $process->run();
 
         if (! $process->isSuccessful()) {
+            $this->components->warn('Run <comment>./vendor/bin/pint --dirty --test -v</comment> to see coding standard detail issues');
             $this->components->warn('Run <comment>./vendor/bin/pint --dirty</comment> to fix coding standard issues');
 
             return self::FAILURE;
