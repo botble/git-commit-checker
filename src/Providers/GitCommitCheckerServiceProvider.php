@@ -17,6 +17,8 @@ class GitCommitCheckerServiceProvider extends ServiceProvider
     {
         $this->app->register(CommandServiceProvider::class);
 
+        $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'git-commit-checker');
+
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../../config/git-commit-checker.php' => config_path('git-commit-checker.php'),

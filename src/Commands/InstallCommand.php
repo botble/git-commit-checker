@@ -2,6 +2,7 @@
 
 namespace Botble\GitCommitChecker\Commands;
 
+use Illuminate\Console\Application;
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -35,14 +36,14 @@ class InstallCommand extends Command
         $pintConfigFilePath = $this->laravel->basePath('pint.json');
 
         if ($this->laravel['files']->exists($pintConfigFilePath)) {
-            if ($this->components->confirm('A pint.json exists. Do you want to overwrite this file?')) {
+            if ($this->components->confirm('A <comment>pint.json</comment> exists. Do you want to overwrite this file?')) {
                 $this->generatePintConfiguration($pintConfigFilePath);
             }
 
             return self::SUCCESS;
         }
 
-        if ($this->components->confirm('A pint.json does not exists. Do you want to create this file?')) {
+        if ($this->components->confirm('A <comment>pint.json</comment> does not exists. Do you want to create this file?')) {
             $this->generatePintConfiguration($pintConfigFilePath);
         }
 
@@ -79,9 +80,7 @@ class InstallCommand extends Command
 
     protected function generateHookScript(string $signature): string
     {
-        $artisan = addslashes($this->laravel->basePath('artisan'));
-
-        return "#!/bin/sh\n\nphp $artisan $signature\n";
+        return sprintf("#!/bin/sh\n\n%s\n", Application::formatCommandString($signature));
     }
 
     protected function generatePintConfiguration(string $path): void
@@ -110,7 +109,9 @@ class InstallCommand extends Command
             abort(1);
         }
 
-        $this->components->info("Created [$path] using $presets[$preset] preset successfully");
+        $this->components->info(
+            "Created <comment>$path</comment> using <comment>$presets[$preset]</comment> preset successfully"
+        );
     }
 
     protected function writeHookScript(string $path, string $script): bool
