@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-git-commit-checker` will be documented in this file.
 
+
+## 2.1.0 - 2023-01-06
+
+- Fix output render on Windows platform (#10)
+
 ## 2.0.1 - 2023-01-05
 
 - Add warning message "Run command to see coding standard detail issues"
