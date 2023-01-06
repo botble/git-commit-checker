@@ -67,10 +67,11 @@ class InstallCommand extends Command
         $script = $this->generateHookScript($command->getName());
 
         $path = $this->laravel->basePath('.git/hooks/' . $hook);
+        $relativePath = ltrim(str_replace($this->laravel->basePath(), '', $path), DIRECTORY_SEPARATOR);
 
         if (
             $this->laravel['files']->exists($path) &&
-            ! $this->confirmToProceed($path . ' already exists, do you want to overwrite it?', true)
+            ! $this->confirmToProceed($relativePath . ' already exists, do you want to overwrite it?', true)
         ) {
             return false;
         }

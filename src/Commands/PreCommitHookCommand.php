@@ -52,7 +52,7 @@ class PreCommitHookCommand extends Command
             ])
         );
 
-        if ($process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             return self::FAILURE;
         }
 

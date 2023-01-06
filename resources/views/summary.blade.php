@@ -3,7 +3,7 @@
         @foreach($result['files'] as $file)
             <div class="mb-1 mt-2">
                 <span class="px-1 bg-red text-white uppercase">File</span>
-                <span class="ml-1">{{ ltrim(str_replace(base_path(), '', $file['name']), '/') }}</span>
+                <span class="ml-1">{{ ltrim(str_replace(base_path(), '', $file['name']), DIRECTORY_SEPARATOR) }}</span>
             </div>
 
             <div class="flex max-w-150">

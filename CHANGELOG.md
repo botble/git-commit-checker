@@ -1,7 +1,10 @@
 # Changelog
 
-All notable changes to `laravel-git-commit-checker` will be documented in this file.
+All notable changes to `botble/git-commit-checker` will be documented in this file.
 
+## 2.1.1 - 2023-01-06
+
+- Fix various bugs
 
 ## 2.1.0 - 2023-01-06
 
