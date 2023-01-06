@@ -8,7 +8,7 @@ All notable changes to `botble/git-commit-checker` will be documented in this fi
 
 ## 2.1.0 - 2023-01-06
 
-- Fix output render on Windows platform (#10)
+- Fix output render on Windows platform (https://github.com/botble/git-commit-checker/pull/10)
 
 ## 2.0.1 - 2023-01-05
 
