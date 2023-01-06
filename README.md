@@ -1,9 +1,15 @@
 # Laravel GIT Commit Checker
 
-[![Latest Version](https://img.shields.io/packagist/v/botble/git-commit-checker.svg?style=flat-square)](https://github.com/botble/git-commit-checker/releases)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Total Downloads](https://img.shields.io/packagist/dt/botble/git-commit-checker.svg?style=flat-square)](https://packagist.org/packages/botble/git-commit-checker)
-[![Maintainability](https://api.codeclimate.com/v1/badges/a6e4612307e3b3bf8252/maintainability)](https://codeclimate.com/github/botble/git-commit-checker/maintainability)
+<p align="center">
+    <img src="/art/overview.png" alt="Overview Git Commit Checker" style="width:70%;">
+</p>
+
+<p align="center">
+    <a href="https://packagist.org/packages/botble/git-commit-checker"><img src="https://img.shields.io/packagist/v/botble/git-commit-checker.svg?style=flat-square" alt="Latest Version"></a>
+    <a href="/LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License"></a>
+    <a href="https://packagist.org/packages/botble/git-commit-checker"><img src="https://img.shields.io/packagist/dt/botble/git-commit-checker.svg?style=flat-square" alt="Total Downloads"></a>
+    <a href="https://codeclimate.com/github/botble/git-commit-checker/maintainability"><img src="https://api.codeclimate.com/v1/badges/a6e4612307e3b3bf8252/maintainability" alt="Maintainability"></a>
+</p>
 
 ## Requirement
 

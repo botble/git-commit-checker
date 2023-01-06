@@ -7,6 +7,8 @@ use Illuminate\Support\Str;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Process\Process;
 
+use function Termwind\render;
+
 #[AsCommand('git-commit-checker:pre-commit-hook', 'Git hook before commit')]
 class PreCommitHookCommand extends Command
 {
@@ -31,20 +33,26 @@ class PreCommitHookCommand extends Command
         $command = [
             $this->laravel->basePath('vendor/bin/pint'),
             '--test',
+            '--format=json',
+            '-v',
         ];
 
         $command = array_merge($command, $uncommittedFiles);
 
         $process = $this->getProcess($command);
 
-        $process->setTty(true);
-
         $process->run();
 
-        if (! $process->isSuccessful()) {
-            $this->components->warn('Run <comment>./vendor/bin/pint --dirty --test -v</comment> to see coding standard detail issues');
-            $this->components->warn('Run <comment>./vendor/bin/pint --dirty</comment> to fix coding standard issues');
+        $result = json_decode($process->getOutput(), true);
 
+        render(
+            view('git-commit-checker::summary', [
+                'result' => $result,
+                'isSuccessful' => $process->isSuccessful(),
+            ])
+        );
+
+        if ($process->isSuccessful()) {
             return self::FAILURE;
         }
 
