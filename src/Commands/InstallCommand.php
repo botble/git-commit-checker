@@ -104,7 +104,7 @@ class InstallCommand extends Command
                     ? ['preset' => $preset]
                     : $this->laravel['config']->get('git-commit-checker.pint.recommended_preset'),
                 JSON_PRETTY_PRINT
-            )
+            ) . PHP_EOL
         )) {
             $this->components->error('Unable to write ' . $path);
             abort(1);
