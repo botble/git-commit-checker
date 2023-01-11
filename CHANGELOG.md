@@ -2,6 +2,10 @@
 
 All notable changes to `botble/git-commit-checker` will be documented in this file.
 
+## 2.1.2 - 2023-01-11
+
+- Bump version `laravel/pint`
+
 ## 2.1.1 - 2023-01-06
 
 - Fix various bugs
