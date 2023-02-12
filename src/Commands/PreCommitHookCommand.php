@@ -43,17 +43,19 @@ class PreCommitHookCommand extends Command
 
         $process->run();
 
-        $result = json_decode($process->getOutput(), true);
+        if ($process->getOutput()) {
+            $result = json_decode($process->getOutput(), true);
 
-        render(
-            view('git-commit-checker::summary', [
-                'result' => $result,
-                'isSuccessful' => $process->isSuccessful(),
-            ])
-        );
+            render(
+                view('git-commit-checker::summary', [
+                    'result' => $result,
+                    'isSuccessful' => $process->isSuccessful(),
+                ])
+            );
 
-        if (! $process->isSuccessful()) {
-            return self::FAILURE;
+            if (! $process->isSuccessful()) {
+                return self::FAILURE;
+            }
         }
 
         return self::SUCCESS;
